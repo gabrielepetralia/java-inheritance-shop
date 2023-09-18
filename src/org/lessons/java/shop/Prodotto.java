@@ -60,8 +60,12 @@ public class Prodotto {
 		return prezzoConIvaFormattato;
 	}
 	
+	public Float getPrezzoScontato() {
+		return getPrezzo() - (getPrezzo() /100 * 2);
+	}
+	
 	@Override
 	public String toString() {
-		return "Codice: " + getCodice() + " | Nome: " + getNome() + " | Marca: " + getMarca() + " | Prezzo base: €" + getPrezzo() + " | Prezzo con IVA: €" + getPrezzoConIva();
+		return "Codice: " + getCodice() + " | Nome: " + getNome() + " | Marca: " + getMarca() + " | Prezzo base: €" + String.format("%.02f", getPrezzo()) + " | Prezzo con IVA: €" + getPrezzoConIva();
 	}
 }

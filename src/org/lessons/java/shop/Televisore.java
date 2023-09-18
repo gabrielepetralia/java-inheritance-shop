@@ -32,6 +32,15 @@ public class Televisore extends Prodotto{
 	};
 	
 	@Override
+	public Float getPrezzoScontato() {
+		if(!isSmart()) {
+			return getPrezzo() - (getPrezzo() /100 * 10);
+		} else {
+			return super.getPrezzoScontato();
+		}
+	}
+	
+	@Override
 	public String toString() {	
 		return super.toString() + " | Dimensioni: " + getDimensioni() + "\"" + " | Smart: " + (isSmart() ? "si" : "no");
 	}

@@ -32,6 +32,15 @@ public class Smartphone extends Prodotto{
 	};
 	
 	@Override
+	public Float getPrezzoScontato() {
+		if(getMemoria()<32) {
+			return getPrezzo() - (getPrezzo() /100 * 5);
+		} else {
+			return super.getPrezzoScontato();
+		}
+	}
+	
+	@Override
 	public String toString() {	
 		return super.toString() + " | IMEI: " + getImei() + " | Memoria: " + getMemoria() + "GB";
 	}

@@ -31,6 +31,16 @@ public class Cuffie extends Prodotto{
 		this.wireless = wireless;
 	};
 	
+	
+	@Override
+	public Float getPrezzoScontato() {
+		if(!isWireless()) {
+			return getPrezzo() - (getPrezzo() /100 * 7);
+		} else {
+			return super.getPrezzoScontato();
+		}
+	}
+	
 	@Override
 	public String toString() {	
 		return super.toString() + " | Colore: " + getColore() + " | Wireless: " + (isWireless() ? "si" : "no");

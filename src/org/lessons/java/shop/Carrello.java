@@ -7,6 +7,12 @@ public class Carrello {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
+		float prezzoTot = 0;
+		
+		System.out.print("Salve, ha la carta fedeltà? [1] si - [0] no: ");
+		boolean card = sc.nextLine().equals("1");
+		
+		System.out.println("\n==============================\n");
 		
 		while(true) {
 			System.out.println("[1] Smartphone - [2] Televisore - [3] Cuffie - [4] Esci ->");
@@ -17,7 +23,7 @@ public class Carrello {
 			if(!choice.equals("1") && !choice.equals("2") && !choice.equals("3")) {
 				sc.close();
 				System.out.println("\n==============================\n");
-				System.out.println("Arrivederci!");
+				System.out.println("Prezzo totale: €" + prezzoTot);
 				return;
 			}
 			
@@ -49,8 +55,14 @@ public class Carrello {
 					
 					Smartphone s = new Smartphone(codice, nome, marca, Float.parseFloat(prezzo), iva, imei, Integer.parseInt(memoria) );
 					
+					if(card) {
+						s.setPrezzo(s.getPrezzoScontato());
+					}
+					
 					System.out.println("\nDettagli prodotto: ");
 					System.out.println(s.toString());
+					
+					prezzoTot = prezzoTot + Float.parseFloat(s.getPrezzoConIva());
 					System.out.println("\n==============================\n");
 					break;
 				case "2":
@@ -63,6 +75,8 @@ public class Carrello {
 					
 					System.out.println("\nDettagli prodotto: ");
 					System.out.println(t.toString());
+
+					prezzoTot = prezzoTot + Float.parseFloat(t.getPrezzoConIva());
 					System.out.println("\n==============================\n");
 					break;
 				case "3":
@@ -75,6 +89,8 @@ public class Carrello {
 					
 					System.out.println("\nDettagli prodotto: ");
 					System.out.println(c.toString());
+					
+					prezzoTot = prezzoTot + Float.parseFloat(c.getPrezzoConIva());
 					System.out.println("\n==============================\n");
 					break;
 			}
